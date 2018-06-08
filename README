@@ -1,0 +1,10 @@
+This little experiment attempts to find out whether the "idleness optimisation" problem in FaaS would have a feasible and practical solution. In short, the problem statement is that since cloud functions are billed in 100ms intervals, there may be a loss if cloud functions execute just a little longer. The idea is when the function processes many units of data, then processing another one (and another one, if needed...) would yield a situation where the execution time comes close to the billing interval, thus reducing the loss at the expense of reduced parallelisation.
+
+Instructions:
+- run ./gettestdata.sh, it will fetch some sample data, nice pictures of Poland and Switzerland
+- run python3 strategies.py, it will take some time... to repeatedly blur all images
+- statistics will be output into strategies.csv and some more on the terminal directly
+- you can compare strategies.csv against the existing reference results strategies.*.csv
+
+Interpretation:
+- the saving should be close to the theoretic maximum while the maxthread value should be as small as possible
