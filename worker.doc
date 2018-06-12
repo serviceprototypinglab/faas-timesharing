@@ -1,0 +1,19 @@
+ sqlite3
+SQLite version 3.16.2 2017-01-06 16:32:41
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> CREATE TABLE jobs (id serial, description text);
+sqlite> INSERT INTO jobs (description) VALUES ("honey");
+sqlite> INSERT INTO jobs (description) VALUES ("marmelade");
+sqlite> INSERT INTO jobs (description) VALUES ("fish");
+sqlite> SELECT * FROM jobs;
+|honey
+|marmelade
+|fish
+sqlite> UPDATE jobs SET id = 2 LIMIT 2;
+sqlite> SELECT * FROM jobs;
+2|honey
+2|marmelade
+|fish
+sqlite> 
