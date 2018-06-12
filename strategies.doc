@@ -1,0 +1,1 @@
+python3 -u strategies.py _testdata.ds2-small/ | tee strategies.ds2-small.log

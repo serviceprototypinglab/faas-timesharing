@@ -6,10 +6,13 @@ then
 	exit 1
 fi
 
-mkdir $1-small
+oname=$1
+tname=`basename $1`-small
 
-for i in $1/*
+mkdir $tname
+
+for i in $oname/*.jpg
 do
 	fn=`basename $i`
-	convert -scale 800 $i $1-small/$fn
+	convert -scale 800 $i $tname/$fn
 done
