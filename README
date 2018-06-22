@@ -1,5 +1,7 @@
 This little experiment attempts to find out whether the "idleness optimisation" problem in FaaS would have a feasible and practical solution. In short, the problem statement is that since cloud functions are billed in 100ms intervals, there may be a loss if cloud functions execute just a little longer. The idea is when the function processes many units of data, then processing another one (and another one, if needed...) would yield a situation where the execution time comes close to the billing interval, thus reducing the loss at the expense of reduced parallelisation.
 
+The datasets 'ds1' and 'ds2' consist of some nice photos which are retrieved by the script 'gettestdata.sh' which defaults to the larger dataset 'ds2'. As the files are quite big, the script 'shrinktestdata.sh' produces a smaller variant. See 'gettestdata.doc' for details.
+
 Instructions:
 - run ./gettestdata.sh, it will fetch some sample data, nice pictures of Poland and Switzerland
 - run python3 strategies.py, it will take some time... to repeatedly blur all images
@@ -8,3 +10,5 @@ Instructions:
 
 Interpretation:
 - the saving should be close to the theoretic maximum while the maxthread value should be as small as possible
+
+When using the FaaS execution instead of the simulation, the script 'faasproducer.py' uploads the chosen dataset into a queue in the cloud (AWS SQS), and the script 'faasconsumer.py' then runs as Lambda to fake-process the data. (Actual processing would require the installation of Scipy into the function bundle.) The FaaS execution is currently incomplete.
