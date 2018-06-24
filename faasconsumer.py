@@ -10,6 +10,7 @@ def emulate_scipy(img):
 
 def lambda_handler(event, context):
     tstart = context.get_remaining_time_in_millis()
+    t = tstart
     sqs = boto3.resource("sqs")
     queue = sqs.get_queue_by_name(QueueName="bagoftasks")
     number = 0
@@ -23,7 +24,8 @@ def lambda_handler(event, context):
         t = context.get_remaining_time_in_millis()
         tx = 100 - int(100 * (t / 100 - int(t / 100)))
         print("{}ms remaining {}ms used".format(t, tx))
-        if tx > 80:
+        if tx > 80 or t < 10000:
             print("good ratio, giving up this instance")
             print("total time used: {} of {}".format(tstart - t, tstart))
-            return number
+            break
+    return {"number": number, "duration": 100 * (int((tstart - t) / 100) + 1)}
