@@ -3,6 +3,11 @@
 folder=_testdata
 ds=ds2
 
+if [ ! -z $1 ]
+then
+	ds=$1
+fi
+
 echo "Downloading test data ($ds)..."
 
 if [ -d $folder.$ds ]
