@@ -4,6 +4,7 @@ import threading
 import random
 import os
 import sys
+import time
 
 # These two are configurable via the CLI
 numpar = 1
@@ -23,11 +24,12 @@ def process(lambdainvocation):
         fullresponse = lambdainvocation.invoke(FunctionName="proxycollectiveshipment", Payload="{}")
         response = json.loads(fullresponse["Payload"].read().decode("utf-8"))
     ccost += response["cost"]
-    print("{:4d} remaining, cumulative cost {:.8} USD".format(response["remaining"], ccost))
+    print("{:4d} remaining, cumulative cost {:.6f} USD".format(response["remaining"], ccost))
     if response["remaining"] <= 0:
         full = False
 
 def measure():
+    t_start = time.time()
     while full:
         threads = []
         for i in range(numpar):
@@ -42,6 +44,8 @@ def measure():
                 break
         for t in threads:
             t.join()
+    t_end = time.time()
+    print("overall processing time: {:.2f} s".format(t_end - t_start))
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:

@@ -23,7 +23,7 @@ def schedule(testdatapath):
 
 	for imagepath in imagepaths:
 		process_producer(imagepath, queue)
-		print(".", end="")
+		print(".", end="", flush=True)
 	print()
 
 if __name__ == "__main__":
