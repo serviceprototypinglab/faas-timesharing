@@ -23,12 +23,18 @@ def process(lambdainvocation):
         # this is faasproxy.py, which in turn invokes the 'queueeater' function, i.e. faasconsumer.py
         fullresponse = lambdainvocation.invoke(FunctionName="proxycollectiveshipment", Payload="{}")
         response = json.loads(fullresponse["Payload"].read().decode("utf-8"))
+    if not "cost" in response:
+        print("warning: invalid response received, setting cost/remaining to 0")
+        response["cost"] = 0
+        response["remaining"] = 0
     ccost += response["cost"]
     print("{:4d} remaining, cumulative cost {:.6f} USD".format(response["remaining"], ccost))
     if response["remaining"] <= 0:
         full = False
 
-def measure():
+def measure(f):
+    forig = sys.stdout
+    sys.stdout = f
     t_start = time.time()
     while full:
         threads = []
@@ -46,6 +52,9 @@ def measure():
             t.join()
     t_end = time.time()
     print("overall processing time: {:.2f} s".format(t_end - t_start))
+    print("configuration was: numpar={} simulate={}".format(numpar, simulate))
+    sys.stdout = forig
+    print("achieved {:.2f}s for numpar={} simulate={}".format(t_end - t_start, numpar, simulate))
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:
@@ -56,7 +65,6 @@ if __name__ == "__main__":
         print("Syntax: {} <numpar> <simulate:True/False>".format(sys.argv[0]), file=sys.stderr)
         sys.exit(-1)
     os.makedirs("data", exist_ok=True)
-    f = open("data/faasmeasure.{}.{}.log".format(numpar, simulate), "w")
-    sys.stdout = f
-    measure()
+    f = open("data/faasmeasure.{:02d}.{}.log".format(numpar, simulate), "w")
+    measure(f)
     f.close()

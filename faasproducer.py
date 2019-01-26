@@ -13,7 +13,7 @@ def process_producer(imagepath, queue):
 def schedule(testdatapath):
 	imagepaths = glob.glob("{}/*.jpg".format(testdatapath))
 
-	print("{} data units; theoretic max savings boundary = {:.2f}s".format(len(imagepaths), len(imagepaths) * 0.5))
+	print("{} data units; theoretic max savings boundary = {:.2f}s".format(len(imagepaths), len(imagepaths) / 10 / 2))
 
 	sqs = boto3.resource("sqs")
 	try:
