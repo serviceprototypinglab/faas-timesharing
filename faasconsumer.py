@@ -24,7 +24,7 @@ def lambda_handler(event, context):
         t = context.get_remaining_time_in_millis()
         tx = 100 - int(100 * (t / 100 - int(t / 100)))
         print("{}ms remaining {}ms used".format(t, tx))
-        if tx > 80 or t < 10000:
+        if event["baseline"] != "all" and (tx > event["threshold"] or t < 10000 or event["baseline"] == "individual"):
             print("good ratio, giving up this instance")
             print("total time used: {} of {}".format(tstart - t, tstart))
             break

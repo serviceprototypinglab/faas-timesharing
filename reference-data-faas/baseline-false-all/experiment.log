@@ -1,0 +1,3 @@
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+achieved 3.73s for numpar=1 simulate=False

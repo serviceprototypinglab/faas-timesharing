@@ -1,0 +1,8 @@
+  67 remaining, cumulative cost 0.000054 USD
+  55 remaining, cumulative cost 0.000241 USD
+warning: invalid response received, setting cost/remaining to 0
+   0 remaining, cumulative cost 0.000241 USD
+warning: invalid response received, setting cost/remaining to 0
+   0 remaining, cumulative cost 0.000241 USD
+overall processing time: 32.14 s
+configuration was: numpar=4 simulate=False

@@ -2,6 +2,7 @@ import boto3
 import base64
 import glob
 import sys
+import time
 
 QN = "bagoftasks"
 
@@ -20,6 +21,15 @@ def schedule(testdatapath):
 		queue = sqs.get_queue_by_name(QueueName=QN)
 	except:
 		queue = sqs.create_queue(QueueName=QN, Attributes={"DelaySeconds": "0"})
+
+	msgs = queue.receive_messages(MaxNumberOfMessages=1)
+	if msgs:
+		print("queue not empty, results undefined, performing safe purge...")
+		try:
+			queue.purge()
+		except:
+			pass
+		time.sleep(60)
 
 	for imagepath in imagepaths:
 		process_producer(imagepath, queue)
