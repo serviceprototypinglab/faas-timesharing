@@ -1,19 +1,13 @@
 import boto3
 import json
 import threading
+import queue
 import random
 import os
 import sys
 import time
 
-# FIXME: global variables
-full = True
-ccost = 0
-rem = 0
-
-def process(lambdainvocation, numpar, simulate, threshold, baseline, bulk):
-    global ccost, full, rem
-
+def process(lambdainvocation, numpar, simulate, threshold, baseline, bulk, q):
     if simulate:
         response = {"cost": 5.0, "remaining": random.randrange(9)}
     else:
@@ -37,45 +31,79 @@ def process(lambdainvocation, numpar, simulate, threshold, baseline, bulk):
         print("warning: invalid response received, setting cost/remaining to 0")
         response["cost"] = 0
         response["remaining"] = 0
-    ccost += response["cost"]
-    print("{:4d} remaining, cumulative cost {:.6f} USD".format(response["remaining"], ccost))
-    if response["remaining"] <= 0:
+
+    cost = response["cost"]
+    duration = response["duration"]
+    rem = response["remaining"]
+    full = True
+    if rem <= 0:
         full = False
-    if rem == 0 or response["remaining"] < rem:
-        rem = response["remaining"]
+
+    print("{:4d} remaining, local duration {:.2f} s, local cost {:.6f} USD".format(rem, duration / 1000, cost))
+
+    if q:
+        q.put((cost, duration, full, rem))
+    else:
+        return (cost, duration, full, rem)
 
 def measure(f, numpar, simulate, threshold, baseline, bulk):
+    mrem = 0
     crem = 0
+    cfull = True
+    ccost = 0
+    cduration = 0
+
     forig = sys.stdout
     sys.stdout = f
+
+    q = None
+    if numpar > 1:
+        q = queue.Queue()
+
     t_start = time.time()
-    while full:
+    while cfull:
         threads = []
         for i in range(numpar):
             lambdainvocation = boto3.client("lambda")
             if numpar == 1:
-                process(lambdainvocation, numpar, simulate, threshold, baseline, bulk)
+                cost, duration, full, rem = process(lambdainvocation, numpar, simulate, threshold, baseline, bulk, q)
                 threads.append(None)
             else:
-                t = threading.Thread(target=process, args=(lambdainvocation, numpar, simulate, threshold, baseline, bulk))
+                t = threading.Thread(target=process, args=(lambdainvocation, numpar, simulate, threshold, baseline, bulk, q))
                 threads.append(t)
                 t.start()
-            if not full:
+            if not cfull:
                 break
         for t in threads:
             if t:
                 t.join()
+                cost, duration, full, rem = q.get()
+            ccost += cost
+            cduration += duration
+            if not full:
+                cfull = False
+            if crem == -1:
+                continue
+            if mrem == 0 or rem < mrem:
+                mrem = rem
             if crem == 0 and rem > 0:
-                crem = rem
-            for i in range(crem - rem):
+                crem = mrem
+            for i in range(crem - mrem):
                 print("+", end="", flush=True, file=forig)
-            crem = rem
+            crem = mrem
+            if crem == 0:
+                crem = -1
     print("", file=forig)
     t_end = time.time()
-    print("overall processing time: {:.2f} s".format(t_end - t_start))
+    t_diff = t_end - t_start
+    print("overall processing time: {:.2f} s, net duration: {:.2f} s, cost: {:.6f} USD".format(t_diff, cduration / 1000, ccost))
     print("configuration was: numpar={} simulate={} | threshold={} baseline={} bulk={}".format(numpar, simulate, threshold, baseline, bulk))
     sys.stdout = forig
-    print("achieved {:.2f}s for numpar={} simulate={}".format(t_end - t_start, numpar, simulate))
+    print("spent {:.2f}s for experiment numpar={} simulate={}".format(t_diff, numpar, simulate))
+
+    f = open("results.csv", "a")
+    print("{:s},{:02d},{:02d},{:s},{:s},{:07.3f},{:.6f}".format(str(simulate), numpar, threshold, baseline, str(bulk), cduration / 1000, ccost), file=f)
+    f.close()
 
 if __name__ == "__main__":
     # Parameters configurable via the CLI
