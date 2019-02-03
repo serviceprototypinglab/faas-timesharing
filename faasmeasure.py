@@ -52,6 +52,7 @@ def measure(f, numpar, simulate, threshold, baseline, bulk):
     cfull = True
     ccost = 0
     cduration = 0
+    invocations = 0
 
     forig = sys.stdout
     sys.stdout = f
@@ -78,6 +79,7 @@ def measure(f, numpar, simulate, threshold, baseline, bulk):
             if t:
                 t.join()
                 cost, duration, full, rem = q.get()
+            invocations += 1
             ccost += cost
             cduration += duration
             if not full:
@@ -96,13 +98,13 @@ def measure(f, numpar, simulate, threshold, baseline, bulk):
     print("", file=forig)
     t_end = time.time()
     t_diff = t_end - t_start
-    print("overall processing time: {:.2f} s, net duration: {:.2f} s, cost: {:.6f} USD".format(t_diff, cduration / 1000, ccost))
+    print("overall processing time: {:.2f} s, net duration: {:.2f} s, invocations {:2d}, cost: {:.6f} USD".format(t_diff, cduration / 1000, invocations, ccost))
     print("configuration was: numpar={} simulate={} | threshold={} baseline={} bulk={}".format(numpar, simulate, threshold, baseline, bulk))
     sys.stdout = forig
     print("spent {:.2f}s for experiment numpar={} simulate={}".format(t_diff, numpar, simulate))
 
     f = open("results.csv", "a")
-    print("{:s},{:02d},{:02d},{:s},{:s},{:07.3f},{:.6f}".format(str(simulate), numpar, threshold, baseline, str(bulk), cduration / 1000, ccost), file=f)
+    print("{:s},{:02d},{:02d},{:s},{:s},{:07.3f},{:02d},{:.6f}".format(str(simulate), numpar, threshold, baseline, str(bulk), cduration / 1000, invocations, ccost), file=f)
     f.close()
 
 if __name__ == "__main__":
