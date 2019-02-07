@@ -28,9 +28,13 @@ def process(lambdainvocation, numpar, simulate, threshold, baseline, bulk, q):
             print("warning: delayed invoke {} s due to network issues".format(ssleep))
         response = json.loads(fullresponse["Payload"].read().decode("utf-8"))
     if not "cost" in response:
-        print("warning: invalid response received, setting cost/remaining to 0")
-        response["cost"] = 0
-        response["remaining"] = 0
+        if "errorMessage" in response and "timed out" in response["errorMessage"]:
+            print("warning: timeout occurred, setting cost/remaining/duration to -1")
+        else:
+            print("warning: invalid response received, setting cost/remaining/duration to -1")
+        response["cost"] = -1
+        response["remaining"] = -1
+        response["duration"] = -1
 
     cost = response["cost"]
     duration = response["duration"]
@@ -39,7 +43,7 @@ def process(lambdainvocation, numpar, simulate, threshold, baseline, bulk, q):
     if rem <= 0:
         full = False
 
-    print("{:4d} remaining, local duration {:.2f} s, local cost {:.6f} USD".format(rem, duration / 1000, cost))
+    print("{:4d} remaining, local duration {:5.2f} s, local cost {:.6f} USD".format(rem, duration / 1000, cost))
 
     if q:
         q.put((cost, duration, full, rem))
@@ -53,6 +57,7 @@ def measure(f, numpar, simulate, threshold, baseline, bulk):
     ccost = 0
     cduration = 0
     invocations = 0
+    error = False
 
     forig = sys.stdout
     sys.stdout = f
@@ -79,6 +84,11 @@ def measure(f, numpar, simulate, threshold, baseline, bulk):
             if t:
                 t.join()
                 cost, duration, full, rem = q.get()
+
+            if cost == -1:
+                cfull = False
+                error = True
+
             invocations += 1
             ccost += cost
             cduration += duration
@@ -107,6 +117,8 @@ def measure(f, numpar, simulate, threshold, baseline, bulk):
     print("{:s},{:02d},{:02d},{:s},{:s},{:07.3f},{:02d},{:.6f}".format(str(simulate), numpar, threshold, baseline, str(bulk), cduration / 1000, invocations, ccost), file=f)
     f.close()
 
+    return error
+
 if __name__ == "__main__":
     # Parameters configurable via the CLI
     numpar = 1
@@ -131,5 +143,9 @@ if __name__ == "__main__":
         sys.exit(-1)
     os.makedirs("data", exist_ok=True)
     f = open("data/faasmeasure.{:02d}.{}.log".format(numpar, simulate), mode="w", buffering=1)
-    measure(f, numpar, simulate, threshold, baseline, bulk)
+    error = measure(f, numpar, simulate, threshold, baseline, bulk)
     f.close()
+
+    if error:
+        print("Bailing out due to errors.", file=sys.stderr)
+        sys.exit(-1)

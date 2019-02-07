@@ -1,3 +1,5 @@
+set -e
+
 ds=_testdata.ds2-small/
 
 rm -rf data-experiment/
