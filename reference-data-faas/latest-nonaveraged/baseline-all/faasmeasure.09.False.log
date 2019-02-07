@@ -1,0 +1,20 @@
+  65 remaining, local duration  9.00 s, local cost 0.000019 USD
+  64 remaining, local duration  8.80 s, local cost 0.000019 USD
+  65 remaining, local duration  9.10 s, local cost 0.000019 USD
+  65 remaining, local duration  9.00 s, local cost 0.000019 USD
+  65 remaining, local duration  9.30 s, local cost 0.000020 USD
+  65 remaining, local duration  9.40 s, local cost 0.000020 USD
+  65 remaining, local duration  9.80 s, local cost 0.000021 USD
+  65 remaining, local duration  9.80 s, local cost 0.000021 USD
+  65 remaining, local duration 10.10 s, local cost 0.000021 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+   0 remaining, local duration  0.10 s, local cost 0.000000 USD
+overall processing time: 14.34 s, net duration: 85.20 s, invocations 18, cost: 0.000181 USD
+configuration was: numpar=9 simulate=False | threshold=0 baseline=all bulk=False

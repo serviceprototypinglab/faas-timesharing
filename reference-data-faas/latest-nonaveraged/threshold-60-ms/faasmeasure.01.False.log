@@ -1,0 +1,29 @@
+  72 remaining, local duration 1.70 s, local cost 0.000020 USD
+  70 remaining, local duration 3.20 s, local cost 0.000035 USD
+  69 remaining, local duration 2.10 s, local cost 0.000023 USD
+  66 remaining, local duration 5.20 s, local cost 0.000056 USD
+  65 remaining, local duration 1.30 s, local cost 0.000015 USD
+  61 remaining, local duration 4.70 s, local cost 0.000051 USD
+  55 remaining, local duration 6.30 s, local cost 0.000067 USD
+  54 remaining, local duration 1.50 s, local cost 0.000017 USD
+  50 remaining, local duration 3.60 s, local cost 0.000039 USD
+  48 remaining, local duration 2.20 s, local cost 0.000025 USD
+  47 remaining, local duration 0.50 s, local cost 0.000007 USD
+  46 remaining, local duration 1.10 s, local cost 0.000013 USD
+  41 remaining, local duration 7.40 s, local cost 0.000079 USD
+  33 remaining, local duration 6.50 s, local cost 0.000069 USD
+  34 remaining, local duration 6.50 s, local cost 0.000069 USD
+  29 remaining, local duration 4.70 s, local cost 0.000051 USD
+  23 remaining, local duration 1.60 s, local cost 0.000018 USD
+  19 remaining, local duration 5.70 s, local cost 0.000061 USD
+  14 remaining, local duration 4.10 s, local cost 0.000044 USD
+  13 remaining, local duration 0.80 s, local cost 0.000010 USD
+  16 remaining, local duration 2.30 s, local cost 0.000026 USD
+  10 remaining, local duration 1.10 s, local cost 0.000013 USD
+  12 remaining, local duration 1.80 s, local cost 0.000020 USD
+   5 remaining, local duration 4.20 s, local cost 0.000045 USD
+   8 remaining, local duration 0.90 s, local cost 0.000011 USD
+   2 remaining, local duration 1.70 s, local cost 0.000019 USD
+   0 remaining, local duration 2.30 s, local cost 0.000026 USD
+overall processing time: 120.37 s, net duration: 85.00 s, invocations 27, cost: 0.000929 USD
+configuration was: numpar=1 simulate=False | threshold=60 baseline=none bulk=False

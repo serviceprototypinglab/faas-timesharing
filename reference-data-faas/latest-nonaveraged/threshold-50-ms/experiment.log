@@ -1,0 +1,40 @@
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 153.09s for experiment numpar=1 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 82.11s for experiment numpar=2 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 67.80s for experiment numpar=3 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 54.07s for experiment numpar=4 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 41.73s for experiment numpar=5 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 38.17s for experiment numpar=6 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 41.69s for experiment numpar=7 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 36.61s for experiment numpar=8 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 31.42s for experiment numpar=9 simulate=False
+73 data units; theoretic max savings boundary = 3.65s
+.........................................................................
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+spent 30.13s for experiment numpar=10 simulate=False

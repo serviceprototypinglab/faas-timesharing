@@ -1,0 +1,37 @@
+  72 remaining, local duration 1.70 s, local cost 0.000020 USD
+  71 remaining, local duration 2.00 s, local cost 0.000022 USD
+  70 remaining, local duration 1.10 s, local cost 0.000013 USD
+  69 remaining, local duration 1.20 s, local cost 0.000014 USD
+  68 remaining, local duration 1.40 s, local cost 0.000016 USD
+  67 remaining, local duration 2.70 s, local cost 0.000030 USD
+  65 remaining, local duration 1.30 s, local cost 0.000015 USD
+  64 remaining, local duration 1.50 s, local cost 0.000017 USD
+  60 remaining, local duration 6.60 s, local cost 0.000070 USD
+  59 remaining, local duration 1.30 s, local cost 0.000015 USD
+  57 remaining, local duration 2.90 s, local cost 0.000032 USD
+  56 remaining, local duration 1.40 s, local cost 0.000016 USD
+  54 remaining, local duration 2.10 s, local cost 0.000023 USD
+  47 remaining, local duration 7.10 s, local cost 0.000075 USD
+  45 remaining, local duration 1.90 s, local cost 0.000021 USD
+  43 remaining, local duration 1.90 s, local cost 0.000021 USD
+  41 remaining, local duration 0.80 s, local cost 0.000010 USD
+  32 remaining, local duration 10.10 s, local cost 0.000107 USD
+  31 remaining, local duration 1.30 s, local cost 0.000015 USD
+  30 remaining, local duration 1.90 s, local cost 0.000021 USD
+  25 remaining, local duration 5.00 s, local cost 0.000054 USD
+  20 remaining, local duration 5.50 s, local cost 0.000059 USD
+  18 remaining, local duration 1.30 s, local cost 0.000015 USD
+  17 remaining, local duration 1.20 s, local cost 0.000014 USD
+  16 remaining, local duration 1.00 s, local cost 0.000012 USD
+  14 remaining, local duration 2.90 s, local cost 0.000032 USD
+  17 remaining, local duration 2.10 s, local cost 0.000023 USD
+  11 remaining, local duration 1.70 s, local cost 0.000020 USD
+  10 remaining, local duration 0.80 s, local cost 0.000010 USD
+   8 remaining, local duration 2.50 s, local cost 0.000028 USD
+   7 remaining, local duration 1.00 s, local cost 0.000012 USD
+   2 remaining, local duration 5.70 s, local cost 0.000061 USD
+   6 remaining, local duration 2.10 s, local cost 0.000023 USD
+   6 remaining, local duration 0.10 s, local cost 0.000003 USD
+   0 remaining, local duration 0.10 s, local cost 0.000003 USD
+overall processing time: 131.06 s, net duration: 85.20 s, invocations 35, cost: 0.000945 USD
+configuration was: numpar=1 simulate=False | threshold=70 baseline=none bulk=False

@@ -1,0 +1,32 @@
+  72 remaining, local duration 1.50 s, local cost 0.000018 USD
+  72 remaining, local duration 2.30 s, local cost 0.000027 USD
+  69 remaining, local duration 4.20 s, local cost 0.000046 USD
+  71 remaining, local duration 4.60 s, local cost 0.000052 USD
+  67 remaining, local duration 6.10 s, local cost 0.000066 USD
+  68 remaining, local duration 6.80 s, local cost 0.000073 USD
+  66 remaining, local duration 7.90 s, local cost 0.000084 USD
+  66 remaining, local duration 8.30 s, local cost 0.000089 USD
+  66 remaining, local duration 9.10 s, local cost 0.000096 USD
+  58 remaining, local duration 15.30 s, local cost 0.000162 USD
+  17 remaining, local duration 1.30 s, local cost 0.000015 USD
+  16 remaining, local duration 1.90 s, local cost 0.000022 USD
+  16 remaining, local duration 1.70 s, local cost 0.000020 USD
+  16 remaining, local duration 2.20 s, local cost 0.000025 USD
+  16 remaining, local duration 2.00 s, local cost 0.000024 USD
+  16 remaining, local duration 2.10 s, local cost 0.000025 USD
+  16 remaining, local duration 2.50 s, local cost 0.000028 USD
+  17 remaining, local duration 2.30 s, local cost 0.000027 USD
+  16 remaining, local duration 2.90 s, local cost 0.000033 USD
+  16 remaining, local duration 3.10 s, local cost 0.000035 USD
+  18 remaining, local duration 0.10 s, local cost 0.000003 USD
+  18 remaining, local duration 0.10 s, local cost 0.000003 USD
+  18 remaining, local duration 0.10 s, local cost 0.000003 USD
+  18 remaining, local duration 0.10 s, local cost 0.000003 USD
+  18 remaining, local duration 0.10 s, local cost 0.000004 USD
+  18 remaining, local duration 0.10 s, local cost 0.000004 USD
+   0 remaining, local duration 0.10 s, local cost 0.000004 USD
+  18 remaining, local duration 0.10 s, local cost 0.000004 USD
+   0 remaining, local duration 0.10 s, local cost 0.000004 USD
+   0 remaining, local duration 0.10 s, local cost 0.000004 USD
+overall processing time: 24.50 s, net duration: 89.10 s, invocations 30, cost: 0.001005 USD
+configuration was: numpar=10 simulate=False | threshold=80 baseline=none bulk=False
